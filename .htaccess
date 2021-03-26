@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond $1 !^(index\.php|resources|robots\.txt)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L,QSA] 
+</IfModule>
+
+RewriteCond %{SERVER_PORT} ^80$
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost [NC]
+# RewriteCond %{HTTP_REFERER} !^reslin.co.id [NC]
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost.*$ [NC]
+# RewriteCond %{HTTP_REFERER} !^reslin.co.id.*$ [NC]
+RewriteRule \.(gif|jpg|pdf|docs|xls|xlxs|png)$ - [F]
